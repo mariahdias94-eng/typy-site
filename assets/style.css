@@ -1,0 +1,450 @@
+/* ============================================================
+   TYPY — Inteligência Ecológica
+   Folha de estilos compartilhada por todas as páginas
+   ============================================================ */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --forest-950: #0a0f0a;
+  --forest-900: #10160f;
+  --forest-800: #1b241a;
+  --forest-700: #29342a;
+  --coral: #e28a68;
+  --coral-light: #eea988;
+  --cream: #f3efe4;
+  --gray: #b7b7ac;
+  --line: rgba(243, 239, 228, 0.28);
+  --font-sans: 'Poppins', sans-serif;
+  --font-serif: 'Cormorant Garamond', serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+}
+
+body {
+  background: var(--forest-950);
+  color: var(--cream);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+
+/* ---------- fundo de floresta (foto real) ---------- */
+
+.forest-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: #0a0f0a url("../images/forest-bg.jpg") center / cover no-repeat;
+}
+
+/* vinheta leve — a própria foto já traz as folhas de canto e o escurecimento */
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(6, 10, 6, 0.35) 0%, rgba(6, 10, 6, 0.1) 25%, rgba(6, 10, 6, 0.15) 70%, rgba(4, 7, 4, 0.55) 100%);
+}
+
+/* ---------- navegação ---------- */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px clamp(20px, 5vw, 64px);
+  backdrop-filter: blur(2px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark { width: 34px; height: 34px; flex-shrink: 0; object-fit: contain; }
+
+.brand-word {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.32em;
+}
+
+.nav-links {
+  display: flex;
+  gap: clamp(18px, 3vw, 40px);
+}
+
+.nav-links a {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  white-space: nowrap;
+  opacity: 0.85;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.nav-links a:hover { opacity: 1; }
+
+.nav-links a.active {
+  opacity: 1;
+  border-bottom-color: var(--cream);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: min(78vw, 320px);
+    background: var(--forest-900);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 40px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.4);
+  }
+  .nav-links.open { transform: translateX(0); }
+  .nav-toggle { display: block; z-index: 60; }
+}
+
+/* ---------- painéis de tela cheia ---------- */
+
+.panel {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px clamp(20px, 8vw, 120px) 100px;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.85;
+  margin-bottom: 18px;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.in-view { opacity: 1; transform: translateY(0); }
+
+/* ---------- home / hero ---------- */
+
+.hero-mark {
+  width: clamp(150px, 22vw, 260px);
+  height: auto;
+  margin-bottom: 28px;
+  object-fit: contain;
+}
+
+.hero-word {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(3rem, 12vw, 7rem);
+  letter-spacing: 0.28em;
+  line-height: 1;
+  margin-left: 0.28em; /* compensa o letter-spacing no centro óptico */
+}
+
+.hero-tagline {
+  margin-top: 22px;
+  font-size: clamp(1rem, 2.4vw, 1.4rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 300;
+  color: var(--cream);
+}
+
+/* ---------- seção IE ---------- */
+
+.ie-big {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  color: var(--coral);
+  font-size: clamp(5rem, 18vw, 11rem);
+  line-height: 1;
+}
+
+.ie-sub {
+  margin-top: 8px;
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.ie-text {
+  margin-top: 36px;
+  max-width: 760px;
+  font-size: clamp(0.85rem, 1.6vw, 1.05rem);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 2;
+  color: var(--cream);
+  opacity: 0.92;
+}
+
+/* ---------- inspiração ---------- */
+
+.insp-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: var(--coral);
+  font-size: clamp(1.8rem, 5vw, 3.2rem);
+  margin-bottom: 40px;
+}
+
+.insp-lines {
+  max-width: 780px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.insp-lines p {
+  font-size: clamp(0.95rem, 2vw, 1.3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.6;
+}
+
+.insp-quote {
+  font-style: italic;
+  color: var(--gray);
+}
+
+.insp-final {
+  margin-top: 12px;
+  color: var(--coral);
+  font-weight: 600;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem) !important;
+}
+
+/* ---------- frentes (o que fazemos) ---------- */
+
+.frentes {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.frente-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: clamp(16px, 4vw, 48px);
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+.frente-tag {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--coral);
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  line-height: 1;
+}
+
+.frente-copy h3 {
+  font-size: clamp(1.1rem, 2.6vw, 1.6rem);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.frente-copy p {
+  font-size: clamp(0.8rem, 1.6vw, 1rem);
+  color: var(--gray);
+  max-width: 420px;
+}
+
+.frente-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+}
+
+/* ---------- objetivos ---------- */
+
+.obj-list {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.obj-list li {
+  font-size: clamp(1.1rem, 3.2vw, 1.8rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.obj-final {
+  margin-top: 20px;
+}
+
+.obj-final .fomentar {
+  display: block;
+  color: var(--coral);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.obj-final .economia {
+  display: block;
+  color: var(--coral);
+  font-weight: 400;
+  font-size: clamp(1rem, 2.6vw, 1.4rem);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ---------- páginas de detalhe (HUB / P,D&I) ---------- */
+
+.detail-tag {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  color: var(--coral);
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+  line-height: 1;
+  margin-bottom: 14px;
+}
+
+.detail-title {
+  font-size: clamp(1.3rem, 3.4vw, 2rem);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.detail-subtitle {
+  color: var(--gray);
+  max-width: 560px;
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  margin-bottom: 56px;
+}
+
+.pillars {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 32px;
+  text-align: left;
+}
+
+.pillar {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+.pillar-index {
+  color: var(--coral);
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.pillar h4 {
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.pillar p {
+  color: var(--gray);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.note {
+  margin-top: 60px;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--gray);
+  opacity: 0.7;
+  max-width: 560px;
+}
+
+/* ---------- contato ---------- */
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.contact-list a {
+  font-size: clamp(1rem, 2.4vw, 1.3rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 6px;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.contact-list a:hover {
+  color: var(--coral);
+  border-color: var(--coral);
+}
+
+/* ---------- rodapé ---------- */
+
+.site-footer {
+  text-align: center;
+  padding: 30px 20px 40px;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray);
+  opacity: 0.7;
+}
