@@ -17,6 +17,7 @@
   --line: rgba(243, 239, 228, 0.28);
   --font-sans: 'Poppins', sans-serif;
   --font-serif: 'Cormorant Garamond', serif;
+  --font-display: 'Raleway', sans-serif;
 }
 
 html {
@@ -78,9 +79,9 @@ img { max-width: 100%; display: block; }
 .brand-mark { width: 34px; height: 34px; flex-shrink: 0; object-fit: contain; }
 
 .brand-word {
-  font-family: var(--font-sans);
-  font-weight: 500;
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  font-size: 1.15rem;
   letter-spacing: 0.32em;
 }
 
@@ -180,12 +181,12 @@ img { max-width: 100%; display: block; }
 }
 
 .hero-word {
-  font-family: var(--font-sans);
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-weight: 100;
   font-size: clamp(3rem, 12vw, 7rem);
-  letter-spacing: 0.28em;
+  letter-spacing: 0.22em;
   line-height: 1;
-  margin-left: 0.28em; /* compensa o letter-spacing no centro óptico */
+  margin-left: 0.22em; /* compensa o letter-spacing no centro óptico */
 }
 
 .hero-tagline {
