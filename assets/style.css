@@ -182,7 +182,7 @@ img { max-width: 100%; display: block; }
 
 .hero-word {
   font-family: var(--font-display);
-  font-weight: 100;
+  font-weight: 300;
   font-size: clamp(3rem, 12vw, 7rem);
   letter-spacing: 0.22em;
   line-height: 1;
